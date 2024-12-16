@@ -10,6 +10,6 @@ export type ConfigValue = {
 // ----------------------------------------------------------------------
 
 export const CONFIG: ConfigValue = {
-  appName: 'Minimal UI',
+  appName: 'BPJS KESEHATAN - REGRISTRASI 3.6',
   appVersion: packageJson.version,
 };

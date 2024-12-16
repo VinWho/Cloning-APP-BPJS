@@ -1,164 +1,62 @@
-import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, Box } from '@mui/material';
 
-import { _tasks, _posts, _timeline } from 'src/_mock';
-import { DashboardContent } from 'src/layouts/dashboard';
-
-import { AnalyticsNews } from '../analytics-news';
-import { AnalyticsTasks } from '../analytics-tasks';
-import { AnalyticsCurrentVisits } from '../analytics-current-visits';
-import { AnalyticsOrderTimeline } from '../analytics-order-timeline';
-import { AnalyticsWebsiteVisits } from '../analytics-website-visits';
-import { AnalyticsWidgetSummary } from '../analytics-widget-summary';
-import { AnalyticsTrafficBySite } from '../analytics-traffic-by-site';
-import { AnalyticsCurrentSubject } from '../analytics-current-subject';
-import { AnalyticsConversionRates } from '../analytics-conversion-rates';
-
-// ----------------------------------------------------------------------
+const data = [
+  { username: 'USERXYAHOO', nama: 'TESTUSER USERX', email: 'USERX@YAHOO.COM', aplikasi: 'Primary Care - BPJS', jenisPengguna: 'Eksternal' },
+  { username: 'bia.icare', nama: 'KLINIK PT BIO INTI AGRINDO', email: 'biacare@gmail.com', aplikasi: 'Primary Care - BPJS, Virtual Claim (VClaim)', jenisPengguna: 'Eksternal' },
+  { username: 'bia.pcare', nama: 'BIO INTI AGRINDO', email: 'bia@gmail.com', aplikasi: 'Primary Care - BPJS', jenisPengguna: 'Eksternal' },
+  { username: 'bidan2', nama: 'bidan mobile', email: 'asdasjdljkasjdljpop@gmail.com', aplikasi: '', jenisPengguna: 'Eksternal' },
+  { username: 'klinik.kinna', nama: 'clinic kinna', email: 'klinik.kinna@gmail.com', aplikasi: '', jenisPengguna: 'Eksternal' },
+  { username: 'useretes.agats', nama: 'useretes agats', email: 'dummy19@gmail.com', aplikasi: 'Primary Care - BPJS, Paperless Voucher', jenisPengguna: 'Eksternal' },
+  { username: '0001384260478', nama: 'kxmiur', email: 'indrasaputrawardhanaxox@gmail.com', aplikasi: 'Paperless Voucher, PESONA (MOBILE)', jenisPengguna: 'Eksternal' },
+  { username: 'useretes.rsrbp', nama: 'useretes rsbp', email: 'testersbp@gmail.com', aplikasi: '', jenisPengguna: 'Eksternal' },
+  { username: 'xxzz', nama: 'xxx zz', email: 'xxzz@gmail.com', aplikasi: 'Primary Care - BPJS', jenisPengguna: 'Eksternal' },
+  { username: 'useretes.gudang', nama: 'gudang arang', email: 'dummy09@gmail.com', aplikasi: 'Pelayanan KC Sosial', jenisPengguna: 'Eksternal' },
+];
 
 export function OverviewAnalyticsView() {
   return (
-    <DashboardContent maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
-        Hi, Welcome back 👋
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" sx={{ mb: 3 }}>
+        Dashboard Pengguna
       </Typography>
+      <Button variant="contained" color="primary" sx={{ mb: 2 }}>
+        + Tambah Data
+      </Button>
+      <Button variant="outlined" color="success" sx={{ ml: 2, mb: 2 }}>
+        Export Excel
+      </Button>
 
-      <Grid container spacing={3}>
-        <Grid xs={12} sm={6} md={3}>
-          <AnalyticsWidgetSummary
-            title="Weekly sales"
-            percent={2.6}
-            total={714000}
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-bag.svg" />}
-            chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-              series: [22, 8, 35, 50, 82, 84, 77, 12],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-          <AnalyticsWidgetSummary
-            title="New users"
-            percent={-0.1}
-            total={1352831}
-            color="secondary"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-users.svg" />}
-            chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-              series: [56, 47, 40, 62, 73, 30, 23, 54],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-          <AnalyticsWidgetSummary
-            title="Purchase orders"
-            percent={2.8}
-            total={1723315}
-            color="warning"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-buy.svg" />}
-            chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-              series: [40, 70, 50, 28, 70, 75, 7, 64],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} sm={6} md={3}>
-          <AnalyticsWidgetSummary
-            title="Messages"
-            percent={3.6}
-            total={234}
-            color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/ic-glass-message.svg" />}
-            chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-              series: [56, 30, 23, 54, 47, 40, 62, 73],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsCurrentVisits
-            title="Current visits"
-            chart={{
-              series: [
-                { label: 'America', value: 3500 },
-                { label: 'Asia', value: 2500 },
-                { label: 'Europe', value: 1500 },
-                { label: 'Africa', value: 500 },
-              ],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsWebsiteVisits
-            title="Website visits"
-            subheader="(+43%) than last year"
-            chart={{
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-              series: [
-                { name: 'Team A', data: [43, 33, 22, 37, 67, 68, 37, 24, 55] },
-                { name: 'Team B', data: [51, 70, 47, 67, 40, 37, 24, 70, 24] },
-              ],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsConversionRates
-            title="Conversion rates"
-            subheader="(+43%) than last year"
-            chart={{
-              categories: ['Italy', 'Japan', 'China', 'Canada', 'France'],
-              series: [
-                { name: '2022', data: [44, 55, 41, 64, 22] },
-                { name: '2023', data: [53, 32, 33, 52, 13] },
-              ],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsCurrentSubject
-            title="Current subject"
-            chart={{
-              categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math'],
-              series: [
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
-              ],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsNews title="News" list={_posts.slice(0, 5)} />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsOrderTimeline title="Order timeline" list={_timeline} />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsTrafficBySite
-            title="Traffic by site"
-            list={[
-              { value: 'facebook', label: 'Facebook', total: 323234 },
-              { value: 'google', label: 'Google', total: 341212 },
-              { value: 'linkedin', label: 'Linkedin', total: 411213 },
-              { value: 'twitter', label: 'Twitter', total: 443232 },
-            ]}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsTasks title="Tasks" list={_tasks} />
-        </Grid>
-      </Grid>
-    </DashboardContent>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell><strong>UserName</strong></TableCell>
+              <TableCell><strong>Nama</strong></TableCell>
+              <TableCell><strong>Email</strong></TableCell>
+              <TableCell><strong>Aplikasi</strong></TableCell>
+              <TableCell><strong>Jenis Pengguna</strong></TableCell>
+              <TableCell align="center"><strong>Aksi</strong></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>{row.username}</TableCell>
+                <TableCell>{row.nama}</TableCell>
+                <TableCell>{row.email}</TableCell>
+                <TableCell>{row.aplikasi}</TableCell>
+                <TableCell>{row.jenisPengguna}</TableCell>
+                <TableCell align="center">
+                  <Button variant="contained" color="success" size="small">
+                    ✔
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }
